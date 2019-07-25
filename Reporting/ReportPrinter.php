@@ -7,10 +7,14 @@ use Reporting\Format\HtmlFormatter;
 use Reporting\Format\CsvFormatter;
 use Reporting\Format\FormatterInterface;
 
+/**
+ * Classe responsable de l'impression des rapports (dynamique et statique)
+ */
 class ReportPrinter
 {
     protected $formatters;
     protected $report;
+    protected $allformat = [];
 
     public function __construct(FormatterInterface $formatters, $report)
     {
@@ -28,15 +32,9 @@ class ReportPrinter
         var_dump($this->formatters->format($this->report));
     }
 
-    public static function printAllFormat($report){
+    public static function printAllFormat($allformat, $report){
 
-    $allFormat = [];
-    $allFormat[] = new HtmlFormatter;
-    $allFormat[] = new JsonFormatter;
-    $allFormat[] = new CsvFormatter;
-
-    foreach ($allFormat as $value) {
-
+    foreach ($allformat as $value) {
         $objectFormat = new $value();
         echo $objectFormat->format($report);
         echo '<br>';
