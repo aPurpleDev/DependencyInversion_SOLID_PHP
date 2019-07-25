@@ -2,7 +2,9 @@
 
 use Reporting\Format\JsonFormatter;
 use Reporting\Format\HtmlFormatter;
+use Reporting\Format\CsvFormatter;
 use Reporting\ReportPrinter;
+use Reporting\Report;
 
 /**
  *
@@ -89,9 +91,20 @@ spl_autoload_register(function ($className) {
     $className = str_replace("\\", "/", $className);
     require_once($className . ".php");
 });
-
-// on instancie notre varble reportPrinter en choisissant le type de rapport, tout simplement en en le passant en paramètre
-$reportPrinter = new ReportPrinter(new HTMLFormatter());
-
+/*
+$reportPrinter = new ReportPrinter(new HTMLFormatter(), new Report("Rapport HTML","25/07/19"));
 $reportPrinter->print();
 $reportPrinter->dump();
+echo '<br>';
+$reportPrinter = new ReportPrinter(new JSONFormatter(), new Report("Rapport HTML","25/07/19"));
+$reportPrinter->print();
+$reportPrinter->dump();
+echo '<br>';
+echo '<br>';
+$reportPrinter = new ReportPrinter(new CSVFormatter(), new Report("Rapport HTML","25/07/19"));
+$reportPrinter->print();
+$reportPrinter->dump();
+*/
+
+$report = new Report();
+ReportPrinter::printAllFormat($report); //static method that prints all formats

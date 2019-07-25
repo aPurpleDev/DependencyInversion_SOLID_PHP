@@ -20,7 +20,7 @@ class Report
      * @param string $date
      * @param string $title
      */
-    public function __construct(string $date, string $title)
+    public function __construct(string $date="default date", string $title="default title")
     {
         $this->date  = $date;
         $this->title = $title;
